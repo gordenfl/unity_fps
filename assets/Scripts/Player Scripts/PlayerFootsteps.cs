@@ -43,20 +43,18 @@ public class PlayerFootsteps : MonoBehaviour
         if (!character_controller.isGrounded)
             return;
 
-        if (character_controller.velocity.sqrMagnitude > 0)
+        if (character_controller.velocity.sqrMagnitude <= 0)
         {
-            accumulated_Distance += Time.deltaTime;
-            if (accumulated_Distance > step_Distance)
-            {
-                footstep_sound.volume = Random.Range(volume_min, volume_max);
-                footstep_sound.clip = footstep_Clip[Random.Range(0, footstep_Clip.Length)];
-                footstep_sound.Play();
-                accumulated_Distance = 0;
-            }
-
+            accumulated_Distance = 0;
+            return;
         }
-        else
+
+        accumulated_Distance += Time.deltaTime;
+        if (accumulated_Distance > step_Distance)
         {
+            footstep_sound.volume = Random.Range(volume_min, volume_max);
+            footstep_sound.clip = footstep_Clip[Random.Range(0, footstep_Clip.Length)];
+            footstep_sound.Play();
             accumulated_Distance = 0;
         }
 
