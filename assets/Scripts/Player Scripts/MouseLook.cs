@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class MouseLook : MonoBehaviour
 {
 
     [SerializeField]
     private Transform playerRoot, lookRoot;
+
     [SerializeField]
     private bool invert;
 
@@ -31,6 +31,9 @@ public class MouseLook : MonoBehaviour
     [SerializeField]
     private Vector2 default_Look_Limits = new Vector2(-70f, 80f);
 
+    [SerializeField]
+    public float roll_Speed = 3f;
+
     private Vector2 look_Angles;
     private Vector2 current_Mouse_Look;
     private Vector2 smooth_Move;
@@ -45,6 +48,11 @@ public class MouseLook : MonoBehaviour
     void Update()
     {
         LockAndUnlockCursor();
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            LookAround();
+        }
+
     }
 
     void LockAndUnlockCursor()
@@ -63,16 +71,19 @@ public class MouseLook : MonoBehaviour
         }
     }
 
+
     void LookAround()
     {
         current_Mouse_Look = new Vector2(Input.GetAxis(MouseAxis.MOUSE_Y), Input.GetAxis(MouseAxis.MOUSE_X));
-        look_Angles.x = current_Mouse_Look.x * sensivity * (invert ? 1.0f : -1.0f);
-        look_Angles.y = current_Mouse_Look.y;
+        look_Angles.x += current_Mouse_Look.x * sensivity * (invert ? 1.0f : -1.0f);
+        look_Angles.y += current_Mouse_Look.y * sensivity;
 
         look_Angles.x = Mathf.Clamp(look_Angles.x, default_Look_Limits.x, default_Look_Limits.y); //Limitation for the angle of x
 
+        current_Roll_Angle = Mathf.Lerp(current_Roll_Angle, Input.GetAxisRaw(MouseAxis.MOUSE_X) * roll_Angle, Time.deltaTime * roll_Speed);
 
-
+        lookRoot.localRotation = Quaternion.Euler(look_Angles.x, 0.0f, current_Roll_Angle);
+        playerRoot.localRotation = Quaternion.Euler(0.0f, look_Angles.y, 0.0f);
     }
 
 }
