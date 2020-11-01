@@ -79,6 +79,13 @@ public class EnemyController : MonoBehaviour
             SetNewRandomDestination();
             patrol_Timer = 0;
         }
+
+        if(navAgent.velocity.sqrMagnitude>0){
+            enemy_Anim.Walk(true);
+        }
+        else{
+            enemy_Anim.Walk(false);
+        }
     }
     //追
     void Chase()
