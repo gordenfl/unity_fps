@@ -46,12 +46,16 @@ public class WeaponManager : MonoBehaviour
 
     void TurnOnSelectedWeapon(int weaponIdx)
     {
+        if (curWeaponIdx == weaponIdx)
+            return;
+            
         weapons[curWeaponIdx].gameObject.SetActive(false);
         weapons[weaponIdx].gameObject.SetActive(true);
         curWeaponIdx = weaponIdx;
     }
 
-    public WeaponHandler GetCurrentSelectedWeapon() {
+    public WeaponHandler GetCurrentSelectedWeapon()
+    {
         return weapons[curWeaponIdx];
     }
 } // class

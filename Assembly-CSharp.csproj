@@ -44,11 +44,15 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
-  <ItemGroup>     <Compile Include="assets\Scripts\HelperScript\TagHolder.cs" />
+  <ItemGroup>     <Compile Include="assets\Scripts\EnemyScripts\EnemyAnimator.cs" />
+     <Compile Include="assets\Scripts\EnemyScripts\EnemyController.cs" />
+     <Compile Include="assets\Scripts\HelperScript\TagHolder.cs" />
      <Compile Include="assets\Scripts\Player Scripts\MouseLook.cs" />
+     <Compile Include="assets\Scripts\Player Scripts\PlayerAttack.cs" />
      <Compile Include="assets\Scripts\Player Scripts\PlayerFootsteps.cs" />
      <Compile Include="assets\Scripts\Player Scripts\PlayerMovement.cs" />
      <Compile Include="assets\Scripts\Player Scripts\PlayerSprintAndCrouch.cs" />
+     <Compile Include="assets\Scripts\Weapon Scripts\ArrowAndBowScripts.cs" />
      <Compile Include="assets\Scripts\Weapon Scripts\WeaponHandler.cs" />
      <Compile Include="assets\Scripts\Weapon Scripts\WeaponManager.cs" />
      <None Include="assets\Shaders\Standard\_Antialiasing\SSAA.shader" />
