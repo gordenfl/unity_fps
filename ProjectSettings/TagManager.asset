@@ -20,9 +20,9 @@ TagManager:
   - 
   - 
   - First Person
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - PostProcessing
   - 
   - 
   - 
