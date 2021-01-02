@@ -41,4 +41,9 @@ public class EnemyAnimator : MonoBehaviour
     {
         anim.SetTrigger(AnimationTags.DEAD_PARAMETER);
     }
+
+    public void OnAnimatioinDamage()
+    {
+        print("=============================");
+    }
 }

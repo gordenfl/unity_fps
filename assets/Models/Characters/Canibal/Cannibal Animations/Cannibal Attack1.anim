@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cannibal Attack
+  m_Name: Cannibal Attack1
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -16278,7 +16278,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.1666667
+        time: 1.1666666
         value: -0.40259415
         inSlope: 2.4289317
         outSlope: 2.4289317
@@ -28964,7 +28964,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.2
-        value: 1.022655
+        value: -0.7285875
         inSlope: -8.042519
         outSlope: -8.042519
         tangentMode: 0
@@ -60971,7 +60971,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.1666667
+        time: 1.1666666
         value: -0.40259415
         inSlope: 2.4289317
         outSlope: 2.4289317
@@ -73657,7 +73657,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.2
-        value: 1.022655
+        value: -0.7285875
         inSlope: -8.042519
         outSlope: -8.042519
         tangentMode: 0
@@ -88468,7 +88468,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.203576
-    functionName: OnAnimationDamage
+    functionName: OnAnimatioinDamage
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
