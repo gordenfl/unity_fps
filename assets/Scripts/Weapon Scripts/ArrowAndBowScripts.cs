@@ -47,5 +47,10 @@ public class ArrowAndBowScripts : MonoBehaviour
     void OnTriggerEnter(Collider target)
     {
         //当这个箭遇到一个物体 target 的时候 会调用这个函数
+
+        if (target.tag == Tags.ENEMY_TAG)
+        {
+            target.GetComponent<HealthScript>().ApplyDamage(damage);
+        }
     }
 }
