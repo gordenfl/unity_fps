@@ -48,6 +48,7 @@
      <Compile Include="assets\Scripts\EnemyScripts\EnemyController.cs" />
      <Compile Include="assets\Scripts\HelperScript\TagHolder.cs" />
      <Compile Include="assets\Scripts\Player Scripts\AttackScript.cs" />
+     <Compile Include="assets\Scripts\Player Scripts\HealthScript.cs" />
      <Compile Include="assets\Scripts\Player Scripts\MouseLook.cs" />
      <Compile Include="assets\Scripts\Player Scripts\PlayerAttack.cs" />
      <Compile Include="assets\Scripts\Player Scripts\PlayerFootsteps.cs" />

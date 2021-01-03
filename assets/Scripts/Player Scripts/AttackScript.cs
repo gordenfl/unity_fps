@@ -5,21 +5,23 @@ using UnityEngine;
 public class AttackScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float damage = 2.0f;
+    public float damage = 12.0f;
     public float radius = 1.0f;
-    public LayerMask  layerMask;
+    public LayerMask layerMask;
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, radius, layerMask);
-        if(hits.Length>0) {
-            print("we hit:"+hits[0].gameObject.tag);
+        if (hits.Length > 0)
+        {
+            print("we hit:" + hits[0].gameObject.tag);
+            hits[0].gameObject.GetComponent<HealthScript>().ApplyDamage(damage);
             gameObject.SetActive(false);
         }
     }

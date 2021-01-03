@@ -29,6 +29,8 @@ public class EnemyController : MonoBehaviour
 
     private float attack_Timer;
     private Transform target;
+
+    public GameObject attack_point;
     void Awake()
     {
         navAgent = GetComponent<NavMeshAgent>();
@@ -185,5 +187,26 @@ public class EnemyController : MonoBehaviour
         NavMeshHit navHit;
         NavMesh.SamplePosition(randDir, out navHit, rand_radius, -1);
         navAgent.SetDestination(navHit.position);
+    }
+
+    void Turn_On_AttackPoint()
+    {
+        attack_point.SetActive(true);
+    }
+    void Turn_Off_AttackPoint()
+    {
+        if (attack_point.activeInHierarchy)
+        {
+            attack_point.SetActive(false);
+        }
+    }
+
+    public EnemyState Enemy_State {
+        get {
+            return enemy_state;
+        }
+        set {
+            enemy_state = value;
+        }
     }
 } //class

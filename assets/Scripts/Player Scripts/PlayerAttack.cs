@@ -53,9 +53,10 @@ public class PlayerAttack : MonoBehaviour
             //GetMouseButtonDown  0 代表主要键，1 代表右键，2 代表中间键
             if (Input.GetMouseButton(0) && Time.time > nextTimeToFire)
             {
-                nextTimeToFire = Time.time + 1.0f / fire_rate;
-                weaponManager.GetCurrentSelectedWeapon().ShootAnimation();
+                nextTimeToFire = Time.time;// + 1.0f / fire_rate;
                 BulletFired();
+                weaponManager.GetCurrentSelectedWeapon().ShootAnimation();
+
             }
         }
         else
@@ -68,8 +69,9 @@ public class PlayerAttack : MonoBehaviour
                 }
                 if (weaponManager.GetCurrentSelectedWeapon().bullet_type == WeaponBulletType.BULLET)
                 {
-                    weaponManager.GetCurrentSelectedWeapon().ShootAnimation();
                     BulletFired();
+                    weaponManager.GetCurrentSelectedWeapon().ShootAnimation();
+
                 }
                 else
                 {
@@ -148,12 +150,13 @@ public class PlayerAttack : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
         {
-            print("We hit:" + hit.transform.gameObject.name);
+            print("asdfasdfa:" + hit.transform.gameObject.name + " || " + hit.transform.tag + "  ||  " + hit.transform.name);
             //shoot bullet hit something.
-        }
-        else
-        {
-            print("Physics return False");
+
+            if (hit.transform.tag == Tags.ENEMY_TAG)
+            {
+                hit.transform.GetComponent<HealthScript>().ApplyDamage(damage);
+            }
         }
     }
 }
