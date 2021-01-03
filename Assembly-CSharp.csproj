@@ -47,6 +47,7 @@
   <ItemGroup>     <Compile Include="assets\Scripts\EnemyScripts\EnemyAnimator.cs" />
      <Compile Include="assets\Scripts\EnemyScripts\EnemyController.cs" />
      <Compile Include="assets\Scripts\EnemyScripts\EnemySound.cs" />
+     <Compile Include="assets\Scripts\GameManagerScripts\EnemyManager.cs" />
      <Compile Include="assets\Scripts\HelperScript\TagHolder.cs" />
      <Compile Include="assets\Scripts\Player Scripts\AttackScript.cs" />
      <Compile Include="assets\Scripts\Player Scripts\HealthScript.cs" />

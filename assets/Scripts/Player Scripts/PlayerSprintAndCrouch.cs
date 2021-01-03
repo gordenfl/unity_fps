@@ -31,14 +31,15 @@ class PlayerSprintAndCrouch : MonoBehaviour
     private float sprint_step_distance = 0.25f;
     private float crouch_step_distance = 0.5f;
 
-    private float spring_value = 100f;
+    private PlayerStats playerStats;
+    private float sprint_value = 100f;
     private float sprint_treshold = 10f;
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         player_footsteps = GetComponentInChildren<PlayerFootsteps>();
         look_Root = transform.GetChild(0);//get Look Root Child Object
-        
+        playerStats = GetComponent<PlayerStats>();
     }
     void Start()
     {
@@ -53,19 +54,26 @@ class PlayerSprintAndCrouch : MonoBehaviour
         Crouch();
     }
 
-    void Sprint()
+    void Sprint()//快跑
     {
-        if (is_Crouching)
+        if (sprint_value > 0f)
         {
-            return;
+            //只在按下键最近的一帧调用
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !is_Crouching) 
+            {
+                playerMovement.speed = sprint_Speed;
+                player_footsteps.step_Distance = sprint_step_distance;
+                player_footsteps.volume_max = sprint_volume;
+                player_footsteps.volume_min = sprint_volume;
+                sprint_value -= sprint_treshold * Time.deltaTime;
+                if (sprint_value < 0)
+                {
+                    sprint_value = 0.0f;
+                }
+            }
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !is_Crouching)
-        {
-            playerMovement.speed = sprint_Speed;
-            player_footsteps.step_Distance = sprint_step_distance;
-            player_footsteps.volume_max = sprint_volume;
-            player_footsteps.volume_min = sprint_volume;
-        }
+
+        //只在抬起键最近的一帧调用
         if (Input.GetKeyUp(KeyCode.LeftShift) && !is_Crouching)
         {
             playerMovement.speed = move_Speed;
@@ -73,8 +81,36 @@ class PlayerSprintAndCrouch : MonoBehaviour
             player_footsteps.volume_max = walk_volume_max;
             player_footsteps.volume_min = walk_volume_min;
         }
+
+        //每一帧都会调用
+        if (Input.GetKey(KeyCode.LeftShift) && !is_Crouching)
+        {
+            sprint_value -= sprint_treshold * Time.deltaTime;
+            if (sprint_value < 0f)
+            {
+                sprint_value = 0.0f;
+                playerMovement.speed = move_Speed;
+                player_footsteps.step_Distance = walk_step_distance;
+                player_footsteps.volume_max = walk_volume_max;
+                player_footsteps.volume_min = walk_volume_min;
+            }
+        }
+        else
+        {
+            if (sprint_value < 100f)
+            {
+
+                sprint_value += Time.deltaTime * (sprint_treshold / 2.0f);
+                if (sprint_value > 100.0f)
+                {
+                    sprint_value = 100.0f;
+                }
+            }
+        }
+        playerStats.Display_StaminaStats(sprint_value);
     }
-    void Crouch()
+
+    void Crouch()//蹲下
     {
         if (Input.GetKeyDown(KeyCode.C))
         {

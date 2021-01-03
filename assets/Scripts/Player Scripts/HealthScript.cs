@@ -15,6 +15,7 @@ public class HealthScript : MonoBehaviour
     private EnemySound enemySound;
 
     private PlayerStats player_stats;
+
     void Awake()
     {
         if (is_boar || is_cannibal)
@@ -99,11 +100,13 @@ public class HealthScript : MonoBehaviour
             enemy_controller.enabled = false;
             navMeshAgent.enabled = false;
             enemy_anim.enabled = false;
+            EnemyManager.instance.onCannibalDead();
 
             //start coroutine
             StartCoroutine(DeadSound());
             //enemy manager spawn more enemies
             TurnOffGameObject();
+
         }
         else if (is_boar)
         {
@@ -111,11 +114,12 @@ public class HealthScript : MonoBehaviour
             navMeshAgent.isStopped = true;
             enemy_controller.enabled = false;
             enemy_anim.Dead();
-
+            EnemyManager.instance.onBoarDead();
             //start coroutine
             StartCoroutine(DeadSound());
             // enemy manager spawn more enemies
             Invoke("TurnOffGameObject", 3.0f);
+
         }
 
 
