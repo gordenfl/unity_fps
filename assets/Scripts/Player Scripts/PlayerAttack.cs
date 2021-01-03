@@ -150,7 +150,7 @@ public class PlayerAttack : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
         {
-            print("asdfasdfa:" + hit.transform.gameObject.name + " || " + hit.transform.tag + "  ||  " + hit.transform.name);
+            //print("asdfasdfa:" + hit.transform.gameObject.name + " || " + hit.transform.tag + "  ||  " + hit.transform.name);
             //shoot bullet hit something.
 
             if (hit.transform.tag == Tags.ENEMY_TAG)

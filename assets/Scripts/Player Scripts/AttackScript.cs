@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float damage = 12.0f;
+    public float damage = 5.0f;
     public float radius = 1.0f;
     public LayerMask layerMask;
 

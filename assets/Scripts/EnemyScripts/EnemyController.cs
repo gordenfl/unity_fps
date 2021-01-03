@@ -153,9 +153,6 @@ public class EnemyController : MonoBehaviour
                 chase_Distance = current_Chase_Distance;
             }
         }
-
-
-
     }
 
     //攻击
