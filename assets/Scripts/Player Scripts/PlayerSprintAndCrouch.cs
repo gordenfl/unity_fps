@@ -30,11 +30,15 @@ class PlayerSprintAndCrouch : MonoBehaviour
     private float walk_step_distance = 0.4f;
     private float sprint_step_distance = 0.25f;
     private float crouch_step_distance = 0.5f;
+
+    private float spring_value = 100f;
+    private float sprint_treshold = 10f;
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         player_footsteps = GetComponentInChildren<PlayerFootsteps>();
         look_Root = transform.GetChild(0);//get Look Root Child Object
+        
     }
     void Start()
     {

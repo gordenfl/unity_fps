@@ -12,6 +12,9 @@ public class HealthScript : MonoBehaviour
     public bool is_player, is_boar, is_cannibal;
 
     private bool isDead;
+    private EnemySound enemySound;
+
+    private PlayerStats player_stats;
     void Awake()
     {
         if (is_boar || is_cannibal)
@@ -19,16 +22,16 @@ public class HealthScript : MonoBehaviour
             enemy_anim = GetComponent<EnemyAnimator>();
             enemy_controller = GetComponent<EnemyController>();
             navMeshAgent = GetComponent<NavMeshAgent>();
+            enemySound = GetComponentInChildren<EnemySound>();
         }
         if (is_player)
         {
-
+            player_stats = GetComponent<PlayerStats>();
         }
     }
 
     void Update()
     {
-
     }
 
     public void ApplyDamage(float val)
@@ -37,30 +40,26 @@ public class HealthScript : MonoBehaviour
             return;
 
         health -= val;
-
-        onPlayerDamage();
-        onEnemyDamage();
-        if (health <= 0)
+        if (is_player)
         {
-            isDead = true;
+            onPlayerDamage();
+        }
+        if (is_boar || is_cannibal)
+        {
+            onEnemyDamage();
         }
     }
     private void onPlayerDamage()
     {
-        if (!is_player)
+        player_stats.Display_HealthStats(health);
+        if (health <= 0)
         {
-            return;
+            onPlayerDie();
         }
 
-        onPlayerDie();
     }
     void onPlayerDie()
     {
-        if (health > 0)
-        {
-            return;
-        }
-
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.ENEMY_TAG);
         for (int i = 0; i < enemies.Length; i++)
         {
@@ -70,24 +69,12 @@ public class HealthScript : MonoBehaviour
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<PlayerAttack>().enabled = false;
         GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);
-
-        if (tag == Tags.PLAYER_TAG)
-        {
-            Invoke("RestartGame", 3.0f);
-        }
-        else
-        {
-            Invoke("TurnOffGameObject", 3.0f);
-        }
+        isDead = true;
+        Invoke("RestartGame", 3.0f);
 
     }
     private void onEnemyDamage()
     {
-        if (!is_boar && !is_cannibal)
-        {
-            return;
-        }
-
         if (enemy_controller.Enemy_State == EnemyState.PATROL)
         {
             enemy_controller.chase_Distance = 50.0f;
@@ -98,23 +85,25 @@ public class HealthScript : MonoBehaviour
             onEnemyDie();
         }
     }
-
     private void onEnemyDie()
     {
+        isDead = true;
         if (is_cannibal)
         {
             GetComponent<Animator>().enabled = false;
-            GetComponent<Rigidbody>().useGravity = true;
-            GetComponent<Rigidbody>().AddTorque(-transform.forward * 50.0f);
             GetComponent<BoxCollider>().isTrigger = false;
+            GetComponent<Rigidbody>().useGravity = true;
+            GetComponent<Rigidbody>().AddTorque(-transform.forward * 5.0f);
+
 
             enemy_controller.enabled = false;
             navMeshAgent.enabled = false;
             enemy_anim.enabled = false;
 
             //start coroutine
-
+            StartCoroutine(DeadSound());
             //enemy manager spawn more enemies
+            TurnOffGameObject();
         }
         else if (is_boar)
         {
@@ -123,10 +112,13 @@ public class HealthScript : MonoBehaviour
             enemy_controller.enabled = false;
             enemy_anim.Dead();
 
-            //startcoroutine
-
+            //start coroutine
+            StartCoroutine(DeadSound());
             // enemy manager spawn more enemies
+            Invoke("TurnOffGameObject", 3.0f);
         }
+
+
     }
     private void RestartGame()
     {
@@ -135,6 +127,12 @@ public class HealthScript : MonoBehaviour
     private void TurnOffGameObject()
     {
         gameObject.SetActive(false);
+    }
+
+    IEnumerator DeadSound()
+    {
+        yield return new WaitForSeconds(0.3f);
+        enemySound.play_DeadSound();
     }
 
 }//class
