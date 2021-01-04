@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <CscToolPath>C:\Program Files\Unity\Hub\Editor\2019.2.8f1\Editor\Data\Tools\RoslynScripts</CscToolPath>
-    <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -46,20 +44,82 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="UnityEngine">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.2.8f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.2.8f1\Editor\Data\Managed/UnityEditor.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
+  <ItemGroup>     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\AccountBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\AvatarBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\Blowfish.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\Bundle.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\ClientSDKUpdater.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\CustomDataTypes.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\DataTypes.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\Dbg.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\deps\KCP.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EncryptionFilter.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\Entity.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EntityCall.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EntityCallAccountBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EntityCallAvatarBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EntityCallGateBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EntityCallMonsterBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EntityCallNPCBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EntityCallSpaceBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EntityCallSpaceDuplicateBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EntityCallSpacesBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EntityCallSpawnPointBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EntityCallTestBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EntityCallTestNoBaseBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EntityComponent.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\EntityDef.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\Event.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\GateBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\KBEMain.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\KBEngine.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\KBEngineArgs.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\KBETypes.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\Math.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\MemoryStream.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\MessageReaderBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\MessageReaderKCP.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\MessageReaderTCP.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\Messages.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\Method.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\MonsterBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\NetworkInterfaceBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\NetworkInterfaceKCP.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\NetworkInterfaceTCP.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\NPCBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\ObjectPool.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\PacketReceiverBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\PacketReceiverKCP.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\PacketReceiverTCP.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\PacketSenderBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\PacketSenderKCP.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\PacketSenderTCP.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\Profile.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\Property.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\ScriptModule.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\ServerErrorDescrs.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\SpaceBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\SpaceDuplicateBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\SpacesBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\SpawnPointBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\TestBase.cs" />
+     <Compile Include="assets\Plugin\kbengine_unity3d_plugins\TestNoBaseBase.cs" />
      <Compile Include="assets\Scripts\EnemyScripts\EnemyAnimator.cs" />
      <Compile Include="assets\Scripts\EnemyScripts\EnemyController.cs" />
      <Compile Include="assets\Scripts\EnemyScripts\EnemySound.cs" />
      <Compile Include="assets\Scripts\GameManagerScripts\EnemyManager.cs" />
      <Compile Include="assets\Scripts\HelperScript\TagHolder.cs" />
+     <Compile Include="assets\Scripts\KbeScripts\Account.cs" />
+     <Compile Include="assets\Scripts\KbeScripts\Avatar.cs" />
+     <Compile Include="assets\Scripts\KbeScripts\clientapp.cs" />
+     <Compile Include="assets\Scripts\KbeScripts\components\Test.cs" />
+     <Compile Include="assets\Scripts\KbeScripts\components\TestNoBase.cs" />
+     <Compile Include="assets\Scripts\KbeScripts\Gate.cs" />
+     <Compile Include="assets\Scripts\KbeScripts\Monster.cs" />
+     <Compile Include="assets\Scripts\KbeScripts\NPC.cs" />
+     <Compile Include="assets\Scripts\KbeScripts\SkillBox.cs" />
+     <Compile Include="assets\Scripts\KbeScripts\skills\Skill.cs" />
+     <Compile Include="assets\Scripts\KbeScripts\skills\SkillObject.cs" />
      <Compile Include="assets\Scripts\Player Scripts\AttackScript.cs" />
      <Compile Include="assets\Scripts\Player Scripts\HealthScript.cs" />
      <Compile Include="assets\Scripts\Player Scripts\MouseLook.cs" />
@@ -69,6 +129,10 @@
      <Compile Include="assets\Scripts\Player Scripts\PlayerMovement.cs" />
      <Compile Include="assets\Scripts\Player Scripts\PlayerSprintAndCrouch.cs" />
      <Compile Include="assets\Scripts\Player Scripts\PlayerStats.cs" />
+     <Compile Include="assets\Scripts\U3dScripts\GameEntity.cs" />
+     <Compile Include="assets\Scripts\U3dScripts\ShowFPS.cs" />
+     <Compile Include="assets\Scripts\U3dScripts\UI.cs" />
+     <Compile Include="assets\Scripts\U3dScripts\World.cs" />
      <Compile Include="assets\Scripts\Weapon Scripts\ArrowAndBowScripts.cs" />
      <Compile Include="assets\Scripts\Weapon Scripts\WeaponHandler.cs" />
      <Compile Include="assets\Scripts\Weapon Scripts\WeaponManager.cs" />
@@ -115,6 +179,9 @@
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>G:/OneDrive - Capital University of Serbia/Documents/GitHub/unity_fps/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -292,6 +359,9 @@
  </Reference>
  <Reference Include="UnityEngine.XRModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.8f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.8f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

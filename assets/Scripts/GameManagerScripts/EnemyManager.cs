@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using KBEngine;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -35,6 +36,28 @@ public class EnemyManager : MonoBehaviour
     {
         SpawnCannibals();
         SpawnBoars();
+    }
+    public void SpawnOneCannibal(Entity entity)
+    {
+        float y = entity.position.y;
+        if (entity.isOnGround)
+        {
+            y = 25.0f;
+        }
+        Vector3 newPos = new Vector3(entity.position.x, y, entity.position.z);
+        entity.renderObj = Instantiate(cannibal_Prefab, newPos, Quaternion.Euler(new Vector3(entity.direction.y, entity.direction.z, entity.direction.x)));
+        ((UnityEngine.GameObject)entity.renderObj).name = entity.className + "_" + entity.id;
+    }
+    public void SpawnOneBoar(Entity entity)
+    {
+        float y = entity.position.y;
+        if (entity.isOnGround)
+        {
+            y = 25.0f;
+        }
+        Vector3 newPos = new Vector3(entity.position.x, y, entity.position.z);
+        entity.renderObj = Instantiate(boar_Prefab, newPos, Quaternion.Euler(new Vector3(entity.direction.y, entity.direction.z, entity.direction.x)));
+        ((UnityEngine.GameObject)entity.renderObj).name = entity.className + "_" + entity.id;
     }
     void SpawnCannibals()
     {

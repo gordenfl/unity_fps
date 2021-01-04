@@ -68,6 +68,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (enemy_state == EnemyState.PATROL)
         {
             Patrol();
@@ -80,6 +81,7 @@ public class EnemyController : MonoBehaviour
         {
             Attack();
         }
+        */
     }//update
 
     //巡逻
