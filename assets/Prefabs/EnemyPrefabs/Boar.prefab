@@ -219,8 +219,8 @@ GameObject:
   - component: {fileID: 9174821967995065082}
   - component: {fileID: 4883195089571135682}
   - component: {fileID: 647981059}
-  - component: {fileID: 6710716476967911641}
   - component: {fileID: 1388771408}
+  - component: {fileID: 905608815963746592}
   m_Layer: 9
   m_Name: Boar
   m_TagString: Enemy
@@ -351,28 +351,6 @@ MonoBehaviour:
   is_player: 0
   is_boar: 1
   is_cannibal: 0
---- !u!114 &6710716476967911641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2082438022517919903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d63d7061260693149bb47d190bbc62df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPlayer: 0
-  destPosition: {x: 0, y: 0, z: 0}
-  destDirection: {x: 0, y: 0, z: 0}
-  entity_name: 
-  hp: 100/100
-  characterController: {fileID: 0}
-  isOnGround: 1
-  isControlled: 0
-  entityEnabled: 1
-  jump_Force: 10
 --- !u!143 &1388771408
 CharacterController:
   m_ObjectHideFlags: 0
@@ -391,6 +369,35 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &905608815963746592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082438022517919903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 155943207, guid: 5b00bf8b25851d440940a40ec23344f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneGuid: 
+  _serializerGuid: 7ddcbc07-e016-4665-b829-9555b0968c83
+  _prefabId: -1
+  _updateRate: 1
+  _autoFreezeProxyFrames: 0
+  _clientPredicted: 1
+  _allowInstantiateOnClient: 1
+  _persistThroughSceneLoads: 0
+  _sceneObjectDestroyOnDetach: 1
+  _sceneObjectAutoAttach: 1
+  _alwaysProxy: 0
+  _detachOnDisable: 1
+  _allowFirstReplicationWhenFrozen: 0
+  _autoRemoveChildEntities: 0
+  _entityBehaviourQueryOption: 0
+  _entityPriorityCalculatorQueryOption: 1
+  _entityReplicationFilterQueryOption: 1
 --- !u!1 &2283706132434423536
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +869,8 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
