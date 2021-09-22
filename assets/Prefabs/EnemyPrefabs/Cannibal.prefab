@@ -763,6 +763,7 @@ GameObject:
   - component: {fileID: 1727211575}
   - component: {fileID: 1727211569}
   - component: {fileID: 2361887738650029470}
+  - component: {fileID: 2333507368014484149}
   m_Layer: 9
   m_Name: Cannibal
   m_TagString: Enemy
@@ -932,6 +933,25 @@ MonoBehaviour:
   isOnGround: 1
   isControlled: 0
   entityEnabled: 1
+  jump_Force: 10
+--- !u!143 &2333507368014484149
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3532518549136723350}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3532518549136723352
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,15 +10,13 @@ using UnityEngine.SceneManagement;
 
 public class World : MonoBehaviour
 {
-    private UnityEngine.GameObject terrain = null;
-    public UnityEngine.GameObject terrainPerfab;
+    private UnityEngine.GameObject terrain;
+    //public UnityEngine.GameObject terrainPerfab;
 
-    private UnityEngine.GameObject player = null;
-    public UnityEngine.GameObject entityPerfab;
-    public UnityEngine.GameObject avatarPerfab;
+    public UnityEngine.GameObject player;
+    //public UnityEngine.GameObject entityPerfab;
+    //public UnityEngine.GameObject avatarPerfab;
 
-    [SerializeField]
-    public UnityEngine.GameObject startCamera;
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
@@ -27,6 +25,7 @@ public class World : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //player = gameObject.GetComponent<Player
         installEvents();
     }
 
@@ -66,7 +65,7 @@ public class World : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        createPlayer();
+        //createPlayer();
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -91,7 +90,7 @@ public class World : MonoBehaviour
 
                         if (s.Length > 0)
                         {
-                            Debug.Log(s[s.Length - 1] + "    ============ toInt 32");
+                            //Debug.Log(s[s.Length - 1] + "-------------------");
                             int targetEntityID = Convert.ToInt32(s[s.Length - 1]);
                             KBEngine.Event.fireIn("useTargetSkill", (Int32)1, (Int32)targetEntityID);
                         }
@@ -150,24 +149,16 @@ public class World : MonoBehaviour
             Debug.Log("wait create(palyer)!");
             return;
         }
-        /*
-        float y = avatar.position.y;
-        if (avatar.isOnGround)
-            y = 1.3f;
-
 
         player.GetComponent<GameEntity>().entityDisable();
         avatar.renderObj = player;
         ((UnityEngine.GameObject)avatar.renderObj).GetComponent<GameEntity>().isPlayer = true;
-		*/
 
         // 有必要设置一下，由于该接口由Update异步调用，有可能set_position等初始化信息已经先触发了
         // 那么如果不设置renderObj的位置和方向将为0，人物会陷入地下
         set_position(avatar);
         set_direction(avatar);
         set_entityName(avatar, avatar.name);
-        //startCamera.SetActive(false);
-        //player.GetComponentInChildren<Camera>().
 
     }
 

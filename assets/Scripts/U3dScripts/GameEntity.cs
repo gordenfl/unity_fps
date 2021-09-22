@@ -5,6 +5,7 @@ using System.Collections;
 using System;
 using System.Xml;
 using System.Collections.Generic;
+using UnityEngine.AI;
 
 public class GameEntity : MonoBehaviour
 {
@@ -31,15 +32,35 @@ public class GameEntity : MonoBehaviour
     float npcHeight = 2.0f;
 
     public CharacterController characterController;
+    private NavMeshAgent navAgent;
 
     public bool isOnGround = true;
 
     public bool isControlled = false;
 
     public bool entityEnabled = true;
+    private EnemyAnimator enemy_Anim;
+    private EnemySound enemySound;
+
+
+
+    private float gravity = 20f;
+    private float vertical_Velocity;
+    private Vector3 move_direction;
 
     void Awake()
     {
+        enemy_Anim = GetComponent<EnemyAnimator>();
+        navAgent = GetComponent<NavMeshAgent>();
+        if (!navAgent.isOnNavMesh)
+        {
+            //Vector3 warpPosition; //Set to position you want to warp to
+            navAgent.transform.position = transform.position;
+            navAgent.enabled = false;
+            navAgent.enabled = true;
+        }
+
+        enemySound = GetComponentInChildren<EnemySound>();
     }
 
     void Start()
@@ -47,6 +68,7 @@ public class GameEntity : MonoBehaviour
         characterController = ((UnityEngine.GameObject)gameObject).GetComponent<CharacterController>();
     }
 
+    /*
     void OnGUI()
     {
 
@@ -94,7 +116,7 @@ public class GameEntity : MonoBehaviour
 
         //绘制HP
         GUI.Label(new Rect(uiposition.x - (hpSize.x / 2), uiposition.y - hpSize.y - 30.0f, hpSize.x, hpSize.y), hp);
-    }
+    }*/
 
     public Vector3 position
     {
@@ -107,15 +129,32 @@ public class GameEntity : MonoBehaviour
         {
             _position = value;
 
-            if (gameObject != null)
+            if (gameObject == null)
             {
-                Vector3 oldPosition = gameObject.transform.position;
-                gameObject.transform.position = _position;
-                //Debug.Log(Vector3.Distance(oldPosition, _position).ToString());
-
-                this.setToRun(Vector3.Distance(oldPosition, _position) > 0.06);
-
+                return;
             }
+            if (_position == gameObject.transform.position)
+            {
+                return;
+            }
+            Vector3 oldPosition = gameObject.transform.position;
+            // = new Vector3(_position;
+            //Debug.Log(Vector3.Distance(oldPosition, _position).ToString());
+            //Vector3 newp = new Vector3()
+            NavMeshHit navHit;
+            NavMesh.SamplePosition(_position, out navHit, 100.0f, -1);
+            //navAgent.SetDestination(navHit.position);
+            /*
+            move_direction = new Vector3(_position.x - oldPosition.x, 0.0f, _position.z - oldPosition.z);
+            move_direction = transform.TransformDirection(move_direction);
+            move_direction *= this._speed * Time.deltaTime;
+             vertical_Velocity -= gravity * Time.deltaTime;
+            //PlayerJump();
+            move_direction.y = vertical_Velocity * Time.deltaTime;*/
+            //this.character_controller.Move(move_direction);
+            gameObject.transform.position = navHit.position;
+
+            enemy_Anim.Run(Vector3.Distance(oldPosition, _position) > 0.06);
         }
     }
 
@@ -204,66 +243,10 @@ public class GameEntity : MonoBehaviour
 
     public void set_state(sbyte v)
     {
-        if (v == 3)
-        {
-            /*if(isPlayer)
-				gameObject.transform.Find ("Graphics").GetComponent<MeshRenderer> ().material.color = Color.green;
-			else
-				gameObject.transform.Find ("Graphics").GetComponent<MeshRenderer> ().material.color = Color.red;
-		} else if (v == 0) 
-		{
-			/*
-			if(isPlayer)
-				gameObject.transform.Find ("Graphics").GetComponent<MeshRenderer> ().material.color = Color.blue;
-			else
-				gameObject.transform.Find ("Graphics").GetComponent<MeshRenderer> ().material.color = Color.white;
-			*/
-        }
-        else if (v == 1)
-        {
-            //gameObject.transform.Find ("Graphics").GetComponent<MeshRenderer> ().material.color = Color.black;
-        }
-    }
-
-    void setToWalk(bool val)
-    {
-        if (gameObject.transform.Find("Hero") == null)
-        {
-            return;
-        }
-
-        Animator anim = gameObject.transform.Find("Hero").GetComponent<Animator>();
-        if (anim != null)
-        {
-            anim.SetBool("toWalk", val);
-        }
 
     }
-    void setIdle()
-    {
-        if (gameObject.transform.Find("Hero") == null)
-        {
-            return;
-        }
-        Animator anim = this.gameObject.transform.Find("Hero").GetComponent<Animator>();
-        if (anim != null)
-        {
-            anim.SetBool("toWalk", false);
-            anim.SetBool("toRun", false);
-        }
-    }
-    void setToRun(bool val)
-    {
-        if (gameObject.transform.Find("Hero") == null)
-        {
-            return;
-        }
-        Animator anim = this.gameObject.transform.Find("Hero").GetComponent<Animator>();
-        if (anim != null)
-        {
-            anim.SetBool("toRun", val);
-        }
-    }
+
+
     void FixedUpdate()
     {
         if (!entityEnabled || KBEngineApp.app == null)
@@ -369,6 +352,8 @@ public class GameEntity : MonoBehaviour
         else
         {
             position = destPosition;
+            enemy_Anim.Walk(false);
+            enemy_Anim.Run(false);
         }
     }
 
