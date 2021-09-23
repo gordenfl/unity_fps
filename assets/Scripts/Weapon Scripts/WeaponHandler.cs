@@ -50,7 +50,7 @@ public class WeaponHandler : MonoBehaviour
 
     public void ShootAnimation()
     {
-        anim.SetTrigger(AnimationTags.SHOOT_TRIGGER);
+        //anim.SetTrigger(AnimationTags.SHOOT_TRIGGER);
     }
 
     public void Aim(bool canAim)

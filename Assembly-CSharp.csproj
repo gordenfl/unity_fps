@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\Weapon Scripts\WeaponHandler.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\HelperScript\TagHolder.cs" />
+    <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemySound.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemyController.cs" />
@@ -75,7 +76,7 @@
     <Compile Include="Assets\Scripts\Player Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\AttackScript.cs" />
     <Compile Include="Assets\Scripts\GameManagerScripts\EnemyManager.cs" />
-    <Compile Include="Assets\Scripts\Menu.cs" />
+    <Compile Include="Assets\Scripts\CreatePlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Standard\_Antialiasing\FXAAPreset2.shader" />

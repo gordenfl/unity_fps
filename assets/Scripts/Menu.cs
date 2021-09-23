@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Photon.Bolt;
 using Photon.Bolt.Matchmaking;
 using UdpKit;
@@ -10,25 +11,21 @@ using System;
 public class Menu : GlobalEventListener
 {
     public Button loginButton;
+    public Button startServer;
     public int ServerPort = 8099;
     // Start is called before the first frame update
     void Start()
     {
-        loginButton.onClick.AddListener(OnLoginButtonClick);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    void OnLoginButtonClick()
+    public void OnmyStartServer()
     {
-        if(!BoltNetwork.IsServer)
-        {
-            BoltLauncher.StartServer(this.ServerPort);
-        }
+        BoltLauncher.StartServer(this.ServerPort);
+    }
+    public void OnLoginButtonClick()
+    {
+        BoltLauncher.StartClient();
     }
 
     public override void BoltStartDone()
@@ -38,9 +35,8 @@ public class Menu : GlobalEventListener
             string servername = System.Guid.NewGuid().ToString();
             BoltMatchmaking.CreateSession(
                 sessionID: servername,
-                sceneToLoad: "World-1");
+                sceneToLoad: "Battle");//here will load scene
         }
-        BoltLauncher.StartClient();
     }
 
     public override void SessionListUpdated(Map<Guid, UdpSession> sessionList)
@@ -53,5 +49,10 @@ public class Menu : GlobalEventListener
                 BoltMatchmaking.JoinSession(s);
             }
         }
+    }
+
+    public override void SessionConnected(UdpSession session, IProtocolToken token)
+    {
+        Console.WriteLine("Sexxion Connection");
     }
 }

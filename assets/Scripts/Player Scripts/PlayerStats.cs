@@ -9,9 +9,11 @@ public class PlayerStats : MonoBehaviour
     private Image health_stats, stamina_stats;
 
     public void Display_HealthStats(float health) {
-        health_stats.fillAmount = health/100f;
+        if(health_stats)
+            health_stats.fillAmount = health/100f;
     }
     public void Display_StaminaStats(float stamina) {
-        stamina_stats.fillAmount = stamina/100f;
+        if(stamina_stats)
+            stamina_stats.fillAmount = stamina/100f;
     }
 }
