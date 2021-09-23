@@ -44,7 +44,7 @@ public class PlayerMovement : EntityBehaviour<IPlayerState>
     public void setCamera(bool state)
     {
         this.camera.enabled = state;
-        this.fp_camera.enabled = state;
+        //this.fp_camera.enabled = state;
         if(state == true)
         {
             Camera.SetupCurrent(this.camera);
@@ -91,9 +91,4 @@ public class PlayerMovement : EntityBehaviour<IPlayerState>
         this.character_controller.Move(move_direction);
     }
 
-    void RotatePlayer()
-    {
-        if (this._isPlayer == false) return;
-
-    }
 }
