@@ -13,6 +13,7 @@ public class PlayerMovement : EntityBehaviour<IPlayerState>
 
     private Vector3 move_direction;
     public Camera camera;
+    public Camera fp_camera;
     public float speed = 5f;
     private float gravity = 20f;
     public float jump_Force = 10.0f;
@@ -43,11 +44,11 @@ public class PlayerMovement : EntityBehaviour<IPlayerState>
     public void setCamera(bool state)
     {
         this.camera.enabled = state;
+        this.fp_camera.enabled = state;
         if(state == true)
         {
             Camera.SetupCurrent(this.camera);
         }
-        this.camera.enabled = state;
     }
     void ApplyGravity()
     {
